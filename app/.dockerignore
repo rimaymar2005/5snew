@@ -1,0 +1,13 @@
+node_modules
+data
+tests
+scripts
+seed
+.git
+.env
+*.db
+*.db-wal
+*.db-shm
+5S_configuracion.json
+README.md
+sql

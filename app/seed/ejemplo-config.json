@@ -1,0 +1,328 @@
+{
+  "schema": "a5s-config-1",
+  "nombre": "Auditorías 5S (ejemplo)",
+  "inicio": "2026-10-12",
+  "dias": 6,
+  "areas": [
+    {
+      "id": "A-01",
+      "nombre": "Almacén de ejemplo",
+      "checklist": "CL-01"
+    },
+    {
+      "id": "A-02",
+      "nombre": "Línea de ejemplo 1",
+      "checklist": "CL-02"
+    },
+    {
+      "id": "A-03",
+      "nombre": "Línea de ejemplo 2",
+      "checklist": "CL-02"
+    },
+    {
+      "id": "A-04",
+      "nombre": "Oficina de ejemplo",
+      "checklist": "CL-02"
+    }
+  ],
+  "checklists": [
+    {
+      "codigo": "CL-01",
+      "nombre": "Racks (ejemplo, 20 puntos)",
+      "formato": "FMC-15 Rev. 3 (ejemplo)",
+      "umbrales": [
+        51,
+        72,
+        89,
+        95
+      ],
+      "puntos": [
+        {
+          "n": 1,
+          "s": "Seleccionar",
+          "q": "Punto ficticio 1 de Seleccionar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 2,
+          "s": "Seleccionar",
+          "q": "Punto ficticio 2 de Seleccionar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 3,
+          "s": "Seleccionar",
+          "q": "Punto ficticio 3 de Seleccionar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 4,
+          "s": "Seleccionar",
+          "q": "Punto ficticio 4 de Seleccionar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 5,
+          "s": "Ordenar",
+          "q": "Punto ficticio 5 de Ordenar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 6,
+          "s": "Ordenar",
+          "q": "Punto ficticio 6 de Ordenar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 7,
+          "s": "Ordenar",
+          "q": "Punto ficticio 7 de Ordenar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 8,
+          "s": "Ordenar",
+          "q": "Punto ficticio 8 de Ordenar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 9,
+          "s": "Ordenar",
+          "q": "Punto ficticio 9 de Ordenar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 10,
+          "s": "Limpiar",
+          "q": "Punto ficticio 10 de Limpiar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 11,
+          "s": "Limpiar",
+          "q": "Punto ficticio 11 de Limpiar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 12,
+          "s": "Limpiar",
+          "q": "Punto ficticio 12 de Limpiar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 13,
+          "s": "Limpiar",
+          "q": "Punto ficticio 13 de Limpiar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 14,
+          "s": "Estandarizar",
+          "q": "Punto ficticio 14 de Estandarizar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 15,
+          "s": "Estandarizar",
+          "q": "Punto ficticio 15 de Estandarizar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 16,
+          "s": "Estandarizar",
+          "q": "Punto ficticio 16 de Estandarizar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 17,
+          "s": "Estandarizar",
+          "q": "Punto ficticio 17 de Estandarizar (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 18,
+          "s": "Sostener",
+          "q": "Punto ficticio 18 de Sostener (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 19,
+          "s": "Sostener",
+          "q": "Punto ficticio 19 de Sostener (CL-01)",
+          "p": 5
+        },
+        {
+          "n": 20,
+          "s": "Sostener",
+          "q": "Punto ficticio 20 de Sostener (CL-01)",
+          "p": 5
+        }
+      ]
+    },
+    {
+      "codigo": "CL-02",
+      "nombre": "Producción (ejemplo, 22 puntos)",
+      "formato": "FMC-15 Rev. 3 (ejemplo)",
+      "umbrales": [
+        51,
+        72,
+        88,
+        95
+      ],
+      "puntos": [
+        {
+          "n": 1,
+          "s": "Seleccionar",
+          "q": "Punto ficticio 1 de Seleccionar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 2,
+          "s": "Seleccionar",
+          "q": "Punto ficticio 2 de Seleccionar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 3,
+          "s": "Seleccionar",
+          "q": "Punto ficticio 3 de Seleccionar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 4,
+          "s": "Seleccionar",
+          "q": "Punto ficticio 4 de Seleccionar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 5,
+          "s": "Seleccionar",
+          "q": "Punto ficticio 5 de Seleccionar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 6,
+          "s": "Seleccionar",
+          "q": "Punto ficticio 6 de Seleccionar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 7,
+          "s": "Ordenar",
+          "q": "Punto ficticio 7 de Ordenar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 8,
+          "s": "Ordenar",
+          "q": "Punto ficticio 8 de Ordenar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 9,
+          "s": "Ordenar",
+          "q": "Punto ficticio 9 de Ordenar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 10,
+          "s": "Ordenar",
+          "q": "Punto ficticio 10 de Ordenar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 11,
+          "s": "Ordenar",
+          "q": "Punto ficticio 11 de Ordenar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 12,
+          "s": "Limpiar",
+          "q": "Punto ficticio 12 de Limpiar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 13,
+          "s": "Limpiar",
+          "q": "Punto ficticio 13 de Limpiar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 14,
+          "s": "Limpiar",
+          "q": "Punto ficticio 14 de Limpiar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 15,
+          "s": "Limpiar",
+          "q": "Punto ficticio 15 de Limpiar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 16,
+          "s": "Limpiar",
+          "q": "Punto ficticio 16 de Limpiar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 17,
+          "s": "Estandarizar",
+          "q": "Punto ficticio 17 de Estandarizar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 18,
+          "s": "Estandarizar",
+          "q": "Punto ficticio 18 de Estandarizar (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 19,
+          "s": "Estandarizar",
+          "q": "Punto ficticio 19 de Estandarizar (CL-02)",
+          "p": 1
+        },
+        {
+          "n": 20,
+          "s": "Sostener",
+          "q": "Punto ficticio 20 de Sostener (CL-02)",
+          "p": 5
+        },
+        {
+          "n": 21,
+          "s": "Sostener",
+          "q": "Punto ficticio 21 de Sostener (CL-02)",
+          "p": 2
+        },
+        {
+          "n": 22,
+          "s": "Sostener",
+          "q": "Punto ficticio 22 de Sostener (CL-02)",
+          "p": 2
+        }
+      ]
+    }
+  ],
+  "rotacion": [
+    [
+      1,
+      2,
+      3,
+      0
+    ],
+    [
+      2,
+      3,
+      0,
+      1
+    ],
+    [
+      3,
+      0,
+      1,
+      2
+    ]
+  ]
+}

@@ -1,0 +1,43 @@
+# Compatible con Podman (podman compose) y Docker Compose.
+# La base de datos es MariaDB/MySQL externa a este compose: por omisión usa el contenedor compartido `mariadb104`
+# (el mismo que ve phpMyAdmin) a través de su red. Crea la base y el usuario una vez con sql/init.sql.
+# Copia .env.example a .env y define las contraseñas antes de levantar.
+# Nombre fijo del proyecto: al mover el compose a app/ se conserva el del contenedor ya desplegado (5s-auditorias5s-1).
+name: 5s
+
+# Solo el servicio web: la base de datos es externa (MariaDB local compartida o Azure Database for MySQL).
+services:
+  auditorias5s:
+    build: .
+    image: localhost/auditorias-5s:latest
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      PORT: "3000"
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Define ADMIN_PASSWORD en el archivo .env}
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET en el archivo .env}
+      DB_HOST: ${DB_HOST:-mariadb104}
+      DB_PORT: ${DB_PORT:-3306}
+      DB_NAME: ${DB_NAME:-a5s}
+      DB_NAME_PMC: ${DB_NAME_PMC:-a5s_pmc}
+      DB_USER: ${DB_USER:-a5s}
+      DB_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD en el archivo .env}
+      TZ: ${TZ:-America/Mexico_City}
+      TRUST_PROXY: ${TRUST_PROXY:-1}
+      GRAPH_TENANT_ID: ${GRAPH_TENANT_ID:-}
+      GRAPH_CLIENT_ID: ${GRAPH_CLIENT_ID:-}
+      GRAPH_CLIENT_SECRET: ${GRAPH_CLIENT_SECRET:-}
+      GRAPH_SENDER: ${GRAPH_SENDER:-}
+      MAIL_ADMIN: ${MAIL_ADMIN:-}
+      MAIL_ADMIN_FC: ${MAIL_ADMIN_FC:-}
+      MAIL_ADMIN_PMC: ${MAIL_ADMIN_PMC:-}
+      APP_URL: ${APP_URL:-}
+      MAIL_HORA: ${MAIL_HORA:-8}
+    networks:
+      - base_de_datos
+    restart: unless-stopped
+
+networks:
+  base_de_datos:
+    name: ${DB_NETWORK:-php82-mariadb104_php_network}
+    external: true
