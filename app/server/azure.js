@@ -49,9 +49,18 @@ async function secreto(vault, token, nombre) {
 async function configuracionBase() {
   const env = process.env;
   if (!enAzure()) {
+    const host = env.DB_HOST || '127.0.0.1';
+    // Referencias al Key Vault en la configuración de la app (@Microsoft.KeyVault(...)): Azure las entrega ya resueltas como
+    // variables de entorno, así que basta DB_HOST/DB_USER/DB_PASSWORD. El SSL con DigiCert se activa solo con un servidor de
+    // Azure Database for MySQL o con DB_SSL=1 (DB_SSL=0 lo desactiva).
+    const ssl = env.DB_SSL === '1' || (env.DB_SSL !== '0' && /.mysql.database.azure.com$/i.test(host));
     return {
-      azure: false,
-      base: { host: env.DB_HOST || '127.0.0.1', port: Number(env.DB_PORT) || 3306, user: env.DB_USER || 'a5s', password: env.DB_PASSWORD || '' },
+      azure: ssl,
+      base: {
+        host, port: Number(env.DB_PORT) || 3306, user: env.DB_USER || 'a5s', password: env.DB_PASSWORD || '',
+        ...(env.DB_CHARSET ? { charset: env.DB_CHARSET } : {}),
+        ...(ssl ? { ssl: { ca: fs.readFileSync(CERT_AZURE, 'utf8'), rejectUnauthorized: true } } : {}),
+      },
       nombres: { fc: env.DB_NAME || 'a5s', pmc: env.DB_NAME_PMC || 'a5s_pmc' },
       secretos: {},
     };

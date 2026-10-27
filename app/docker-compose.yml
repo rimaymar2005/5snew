@@ -20,6 +20,7 @@ services:
       DB_PORT: ${DB_PORT:-3306}
       DB_NAME: ${DB_NAME:-a5s}
       DB_NAME_PMC: ${DB_NAME_PMC:-a5s_pmc}
+      PLANTAS: ${PLANTAS:-fc,pmc}
       DB_USER: ${DB_USER:-a5s}
       DB_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD en el archivo .env}
       TZ: ${TZ:-America/Mexico_City}

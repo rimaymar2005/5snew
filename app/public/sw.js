@@ -1,7 +1,7 @@
 'use strict';
 // Service worker: guarda la app para abrirla sin conexión. Los datos (/api) nunca se cachean aquí;
 // la app guarda sus capturas en el almacenamiento local y las sincroniza sola.
-const VERSION = 'a5s-v39';
+const VERSION = 'a5s-v40';
 const BASICOS = ['/', '/manifest.webmanifest', '/icon.svg', '/favicon.png', '/danfoss.svg', '/i18n.js', '/5s.png', '/icon-180.png', '/icon-512.png'];
 
 self.addEventListener('install', (e) => {

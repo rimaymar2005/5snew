@@ -14,12 +14,15 @@ async function main() {
   const horaDeAvisos = hora >= 0 && hora <= 23 ? hora : 8; // hora local a partir de la cual se mandan los avisos diarios
   console.log(correo.activo ? `Correo: Microsoft Graph activo (remitente ${correo.remitente}).` : 'Correo: desactivado (faltan variables GRAPH_*).');
   const base = cfg.base;
-  // una base de datos por planta (mismo servidor y usuario)
+  // una base de datos por planta (mismo servidor y usuario). PLANTAS=fc deja activa solo FC (por omisión: fc,pmc)
+  const activas = new Set((process.env.PLANTAS || 'fc,pmc').toLowerCase().split(',').map((x) => x.trim()).filter(Boolean));
+  const todas = {
+    fc: { nombre: 'FC', conexion: { ...base, database: cfg.nombres.fc }, adminCorreos: listaCorreos(process.env.MAIL_ADMIN_FC || process.env.MAIL_ADMIN) },
+    pmc: { nombre: 'PMC', conexion: { ...base, database: cfg.nombres.pmc }, adminCorreos: listaCorreos(process.env.MAIL_ADMIN_PMC || process.env.MAIL_ADMIN) },
+  };
+  if (!Object.keys(todas).some((id) => activas.has(id))) throw new Error('PLANTAS no incluye ninguna planta válida (fc, pmc).');
   const { app, close } = await createMulti({
-    plantas: {
-      fc: { nombre: 'FC', conexion: { ...base, database: cfg.nombres.fc }, adminCorreos: listaCorreos(process.env.MAIL_ADMIN_FC || process.env.MAIL_ADMIN) },
-      pmc: { nombre: 'PMC', conexion: { ...base, database: cfg.nombres.pmc }, adminCorreos: listaCorreos(process.env.MAIL_ADMIN_PMC || process.env.MAIL_ADMIN) },
-    },
+    plantas: Object.fromEntries(Object.entries(todas).filter(([id]) => activas.has(id))),
     correo, // Microsoft Graph (GRAPH_*); sin esas variables el correo queda desactivado
     urlApp: process.env.APP_URL || '',
     programar: true,

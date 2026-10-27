@@ -658,7 +658,8 @@ const ICON = {
 const mem = new Map();
 // Cada planta guarda lo suyo bajo "a5s.<planta>.…" (sesión, capturas, configuración); solo el id del equipo y la
 // planta elegida son comunes. Las claves se escriben siempre como "a5s.…": el prefijo de planta se agrega aquí.
-const PLANTAS = [{ id: 'fc', nombre: 'FC' }, { id: 'pmc', nombre: 'PMC' }];
+// el servidor sustituye __PLANTAS__ por las plantas activas (p. ej. "fc"); sin sustituir quedan las dos
+const PLANTAS = [{ id: 'fc', nombre: 'FC' }, { id: 'pmc', nombre: 'PMC' }].filter((p) => !/^[a-z,]+$/.test('__PLANTAS__') || '__PLANTAS__'.split(',').includes(p.id));
 const GLOBALES = new Set(['a5s.dev', 'a5s.planta']);
 const pfxPlanta = () => `a5s.${S.planta}.`;
 const clave = (k) => (GLOBALES.has(k) || !S.planta ? k : pfxPlanta() + k.slice(4));
@@ -1239,7 +1240,7 @@ function vistaLogin() {
 
   raiz.append(h('div', { class: 'page-title' }, h('h1', {}, 'Auditorías 5S'), h('p', { class: 'muted' }, 'Inicia sesión con el área que va a auditar.')), aviso, cuerpo,
     h('div', { class: 'row' }, h('span', { class: 'badge acc' }, `Planta ${nombrePlanta(S.planta)}`),
-      h('button', { class: 'btn ghost sm', type: 'button', onclick: cambiarPlanta }, 'Cambiar de planta')));
+      PLANTAS.length > 1 && h('button', { class: 'btn ghost sm', type: 'button', onclick: cambiarPlanta }, 'Cambiar de planta')));
   pintar();
   api('GET', '/api/areas', undefined, { sinRedireccion: true }).then((r) => {
     if (r.areas.length) { areas = r.areas; kv.set('a5s.areas', areas); if (!seleccion && !modoAdmin) pintar(); }
@@ -2924,7 +2925,7 @@ function init() {
   kv.set('a5s.dev', S.device);
   const venia = kv.migrarLegado(); // equipos que ya usaban la app (solo existía FC)
   const guardada = kv.get('a5s.planta');
-  S.planta = PLANTAS.some((p) => p.id === guardada) ? guardada : (venia ? 'fc' : null);
+  S.planta = PLANTAS.some((p) => p.id === guardada) ? guardada : (PLANTAS.length === 1 ? PLANTAS[0].id : (venia ? 'fc' : null));
   if (S.planta) kv.set('a5s.planta', S.planta);
   cargarPlanta();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});

@@ -44,7 +44,7 @@ const REINTENTABLE = new Set(['ER_DUP_ENTRY', 'ER_LOCK_DEADLOCK', 'ER_LOCK_WAIT_
 
 // conexion = { host, port, user, password, database }
 // correo = cliente de Microsoft Graph (./correo); adminCorreos = destinatarios de los avisos al administrador; programar = revisión diaria
-async function createApp({ conexion, adminPassword, jwtSecret, trustProxy = '1', correo = CORREO_INACTIVO, plantaNombre = '', adminCorreos = [], urlApp = '', programar = false, horaCorreo = 8 }) {
+async function createApp({ conexion, adminPassword, jwtSecret, trustProxy = '1', correo = CORREO_INACTIVO, plantaNombre = '', adminCorreos = [], urlApp = '', programar = false, horaCorreo = 8, plantasActivas = '' }) {
   const db = await D.abrir(conexion);
   let cfg = await D.cargarConfig(db);
   const app = express();
@@ -949,7 +949,7 @@ async function createApp({ conexion, adminPassword, jwtSecret, trustProxy = '1',
     try { html = fs.readFileSync(path.join(PUBLIC_DIR, 'index.html'), 'utf8'); } catch { return res.status(404).send('Falta public/index.html'); }
     res.set('Content-Type', 'text/html; charset=utf-8');
     res.set('Cache-Control', 'no-cache');
-    res.send(html.replace(/__NONCE__/g, res.locals.nonce));
+    res.send(html.replace(/__NONCE__/g, res.locals.nonce).replace(/__PLANTAS__/g, plantasActivas || '__PLANTAS__'));
   }
   app.get(['/', '/index.html'], paginaIndex);
   app.get('/sw.js', (req, res) => {

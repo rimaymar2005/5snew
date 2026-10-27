@@ -15,7 +15,7 @@ async function createMulti({ plantas, adminPassword, jwtSecret, trustProxy = '1'
       // secreto distinto por planta: una sesión de una planta no sirve en la otra
       const secreto = jwtSecret ? crypto.createHmac('sha256', jwtSecret).update(`planta:${id}`).digest('hex') : undefined;
       instancias[id] = await createApp({
-        conexion: plantas[id].conexion, adminPassword, jwtSecret: secreto, trustProxy, correo, urlApp, programar, horaCorreo,
+        conexion: plantas[id].conexion, adminPassword, jwtSecret: secreto, trustProxy, correo, urlApp, programar, horaCorreo, plantasActivas: ids.join(','),
         plantaNombre: plantas[id].nombre || id.toUpperCase(), adminCorreos: plantas[id].adminCorreos || [],
       });
     }
